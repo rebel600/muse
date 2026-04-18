@@ -17,6 +17,8 @@ import { usePathname } from "next/navigation";
 import React from "react";
 import { UserButton } from "@clerk/nextjs";
 import { Toaster } from "sonner";
+import { api } from "@/convex/_generated/api";
+import { useConvexQuery } from "@/hooks/use-convex-query";
 
 interface DashboardLayoutProps {
   children: React.ReactNode;
@@ -52,6 +54,8 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
+
+  const {data: draftPost} = useConvexQuery(api.posts.getUserDraft);
 
   return (
     <div className="min-h-screen bg-slate-900 text-white">
@@ -110,7 +114,7 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
                     )}
                   />
                   <span>{item.title}</span>
-                  {item.title === "Create Post" && true && (
+                  {item.title === "Create Post" && draftPost  && (
                     <Badge
                       variant="secondary"
                       className="ml-auto text-xs bg-orange-500/20 border-orange-500/20 text-orange-300"
@@ -138,7 +142,7 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
       </aside>
       <div className="lg:ml-64 ml-0">
         <header className="fixed w-full top-0 right-0 z-30 bg-slate-800/80 backdrop-blur-md border-b border-slate-700">
-          <div className="flex items-center justify-between px-4 lg:px-8 py-4">
+          <div className="flex items-center justify-between px-4 lg:px-8 py-0 lg:py-4">
             <div className="flex items-center space-x-4">
               <Button
                 variant="ghost"
