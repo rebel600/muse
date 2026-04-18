@@ -1,6 +1,6 @@
-# Full Stack AI Content Platform with Next JS, Tailwind, React Quill, ImageKit, Shadcn UI
+# Full Stack AI Content Platform using Next JS, Tailwind, React Quill, ImageKit, Shadcn UI, Clerk and Convex
 
-### Make sure to create a `.env` file with following variables -
+## Make sure to create a `.env` file with following variables -
 
 ```
 # Deployment used by `npx convex dev`
